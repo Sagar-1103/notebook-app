@@ -40,7 +40,7 @@ export default function Addnote() {
             name="title"
             value={noteData.title}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
             placeholder="Enter the note title"
             required
           />
@@ -54,7 +54,7 @@ export default function Addnote() {
             name="description"
             value={noteData.description}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
             placeholder="Enter the note description"
             required
           />
@@ -69,7 +69,7 @@ export default function Addnote() {
             name="tags"
             value={noteData.tags}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
             placeholder="Enter tags"
           />
         </div>

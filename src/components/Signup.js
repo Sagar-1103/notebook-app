@@ -22,7 +22,7 @@ export default function Signup() {
     
       return (
         <div className="min-h-screen w-full flex items-center justify-center bg-gray-100">
-          <div className="bg-white p-4 rounded shadow-md sm:w-96">
+          <div className="bg-white p-10 rounded-lg shadow-md sm:w-96">
             <h2 className="text-2xl font-semibold mb-6">Create a new account</h2>
             <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -32,7 +32,7 @@ export default function Signup() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="Name"
                   required
                 />
@@ -44,7 +44,7 @@ export default function Signup() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="Email"
                   required
                 />
@@ -56,7 +56,7 @@ export default function Signup() {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="New Password"
                   required
                 />
@@ -68,7 +68,7 @@ export default function Signup() {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="Confirm Password"
                   required
                 />
@@ -76,7 +76,7 @@ export default function Signup() {
               <div className="mb-4">
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
+                  className="w-full bg-gray-800 text-white font-semibold py-2 rounded-lg hover:ring focus:outline-none"
                 >
                   Sign Up
                 </button>

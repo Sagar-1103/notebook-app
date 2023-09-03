@@ -11,6 +11,7 @@ function App() {
   return (
     <>
     <Router>
+      <div className='bg-gray-100'>
     <Navbar/>
     <Alert/>
     <div>
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/signup'element={<Signup/>} />
         <Route exact path='/about'element={<About/>} />
       </Routes>
+    </div>
     </div>
     </Router>
     </>
