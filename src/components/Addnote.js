@@ -1,11 +1,10 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
+import noteContext from '../context/notes/NoteContext';
 
 export default function Addnote() {
-  const [noteData, setNoteData] = useState({
-    title: '',
-    description: '',
-    tags: '',
-  });
+  const context = useContext(noteContext);
+  const {addNote} = context;
+  const [noteData, setNoteData] = useState({title: '',description: '',tags: ''});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,15 +13,8 @@ export default function Addnote() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here (e.g., add the note to your application's state)
-    console.log('Note data submitted:', noteData);
-
-    // Optionally, you can clear the form fields after submission
-    setNoteData({
-      title: '',
-      description: '',
-      tags: '',
-    });
+    addNote(noteData);
+    setNoteData({title: '',description: '',tags: ''});
   };
 
   return (

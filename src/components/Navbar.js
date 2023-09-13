@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  let location = useLocation();
+  // console.log(location.pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-    const [isActive, setIsActive] = useState(false);
-  
-    const toggleButton = () => {
-      setIsActive(!isActive);
-    };
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,16 +37,16 @@ export default function Navbar() {
           NoteBook
         </Link>
         <div className="md:flex space-x-4 mt-4 md:mt-0 hidden">
-          <Link to="/" className="text-white">
+          <Link to="/" className={`${location.pathname==="/"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             Home
           </Link>
-          <Link to="/about" className="text-white">
+          <Link to="/about" className={`${location.pathname==="/about"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             About us
           </Link>
-          <Link to="/login" className="text-white">
+          <Link to="/login" className={`${location.pathname==="/login"|| location.pathname==="/signup"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             Sign up
           </Link>
-          <Link to="/" className="text-white">
+          <Link to="/profile" className={`${location.pathname==="/profile"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             Profile
           </Link>
         
@@ -86,7 +83,7 @@ export default function Navbar() {
             <Link to="/login" className="block py-2 px-4 text-white">
               Sign up
             </Link>
-            <Link to="/" className="block py-2 px-4 text-white">
+            <Link to="/profile" className="block py-2 px-4 text-white">
               Profile
             </Link>
           </div>

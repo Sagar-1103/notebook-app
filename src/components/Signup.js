@@ -1,25 +1,39 @@
+import axios from 'axios';
 import React,{useState} from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loader from './Loader';
 
 export default function Signup() {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-      });
-    
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission here (e.g., send data to an API)
-        console.log('Form data submitted:', formData);
-      };
-    
+    const navigate = useNavigate();
+    const [signCred,setSignCred]=useState({name:"",email:"",password:"",cpassword:""});
+    const [lodingState,setLodingState] = useState(false);
+
+    const handleChange = (e)=>{
+      setSignCred({...signCred,[e.target.name]:e.target.value});
+    }
+    const handleSubmit=async(e)=>{
+    e.preventDefault();
+    setLodingState(true);
+      const url = `${process.env.REACT_APP_LINK}/api/auth/createUser`;
+      const headers = {
+        "Content-Type":"application/json"
+      }
+      const requestBody={
+        name:signCred.name,
+        email:signCred.email,
+        password:signCred.password
+      }
+      const response = await axios.post(url,requestBody,{headers});
+      const json = await response.data;
+      setLodingState(false);
+
+      if (json.success) {
+        localStorage.setItem("token",json.authToken);
+        navigate("/");
+      } else {
+
+      }
+    }
       return (
         <div className="min-h-screen w-full flex items-center justify-center bg-gray-100">
           <div className="bg-white p-10 rounded-lg shadow-md sm:w-96">
@@ -27,10 +41,10 @@ export default function Signup() {
             <form onSubmit={handleSubmit}>
             <div className="mb-4">
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={signCred.name}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="Name"
@@ -42,7 +56,7 @@ export default function Signup() {
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
+                  value={signCred.email}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="Email"
@@ -54,7 +68,7 @@ export default function Signup() {
                   type="password"
                   id="password"
                   name="password"
-                  value={formData.password}
+                  value={signCred.password}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="New Password"
@@ -64,15 +78,16 @@ export default function Signup() {
               <div className="mb-4">
                 <input
                   type="password"
-                  id="password"
-                  name="password"
-                  value={formData.password}
+                  id="cpassword"
+                  name="cpassword"
+                  value={signCred.cpassword}
                   onChange={handleChange}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="Confirm Password"
                   required
                 />
               </div>
+              { lodingState && <Loader/>}
               <div className="mb-4">
                 <button
                   type="submit"
