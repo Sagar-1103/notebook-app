@@ -41,56 +41,51 @@ export default function Profile() {
   },[]);
 
   return (
-    <>
-    <div className="max-w-md mx-auto mt-60 p-6 relative bg-white rounded-lg border-2 border-grey shadow-lg">
-      <h2 className="text-2xl font-semibold mb-6">Profile</h2>
-      <div className="mb-4">
-        <label htmlFor="name" className="block text-gray-600 mb-1">
-          Name:
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={user.name}
-          className="w-full px-3 py-2 border rounded-lg bg-gray-200 hover:cursor-default"
-          readOnly
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-gray-600 mb-1">
-          Email:
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={user.email}
-          className="w-full px-3 py-2 border rounded-lg bg-gray-200 hover:cursor-default"
-          readOnly
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="bio" className="block text-gray-600 mb-1">
-          Account created on:
-        </label>
-        <input
-          id="bio"
-          name="bio"
-          value={user.date}
-          className="w-full px-3 py-2 mb-7 border rounded-lg bg-gray-200 hover:cursor-default"
-          readOnly
-        />
-        {loaderState && <Loader/>}
-        <button
-          onClick={onLogout}
-          className="bg-red-500 hover:bg-red-600 absolute right-7 bottom-3.5 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none"
-        >
-          Logout
-        </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white relative p-8 rounded-lg shadow-md sm:w-96">
+        <h2 className="text-2xl font-semibold mb-6">Profile</h2>
+        <form>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-gray-600 mb-1">Name:</label>
+            <input
+              type="text"
+              value={user.name}
+              // onChange={handleChange}
+              className="w-full bg-gray-200 px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
+              readOnly
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="name" className="block bg-gray mb-1">Email:</label>
+            <input
+              type="text"
+              value={user.email}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none bg-gray-200 focus:border-black"
+              readOnly
+            />
+          </div>
+          <div className="mb-10">
+            <label htmlFor="name" className="block bg-gray mb-1">Account created on:</label>
+            <input
+              type="text"
+              value={user.date}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none bg-gray-200 focus:border-black"
+              readOnly
+            />
+          </div>
+          { loaderState && <Loader/>}
+          <div className="mb-6">
+            <button
+              disabled = {loaderState}
+              type="submit"
+              className={`bg-red-500 hover:bg-red-600 ${loaderState?"hidden":" "} absolute right-7 bottom-3.5 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none`}
+              onClick={onLogout}
+            >
+              Logout
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </> 
-    
   );
 }

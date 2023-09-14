@@ -63,8 +63,9 @@ export default function Login(props) {
               { lodingState && <Loader/>}
               <div className="mb-6">
                 <button
+                  disabled = {lodingState}
                   type="submit"
-                  className="w-full bg-gray-800 text-white font-semibold py-2 rounded-lg hover:ring focus:outline-none"
+                  className={`w-full ${lodingState?"hidden":" "} bg-gray-800 text-white font-semibold py-2 rounded-lg hover:ring focus:outline-none`}
                 >
                   Login
                 </button>

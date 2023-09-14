@@ -74,16 +74,16 @@ export default function Navbar() {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="bg-gray-800 mt-2">
-            <Link to="/" className="block py-2 px-4 text-white">
+            <Link to="/" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
               Home
             </Link>
-            <Link to="/about" className="block py-2 px-4 text-white">
+            <Link to="/about" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
               About us
             </Link>
-            <Link to="/login" className="block py-2 px-4 text-white">
+            <Link to="/login" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
               Sign up
             </Link>
-            <Link to="/profile" className="block py-2 px-4 text-white">
+            <Link to="/profile" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
               Profile
             </Link>
           </div>
