@@ -14,22 +14,28 @@ export default function Login(props) {
   }
   const loginSubmit = async(e)=>{
     e.preventDefault();
-    setLodingState(true);
+    try {
+      setLodingState(true);
     const url = `${process.env.REACT_APP_LINK}/api/auth/login`;
     const headers = {
         "Content-Type":"application/json"
     }
     const response = await axios.post(url,loginCred,{headers});
     const json = await response.data;
+    // console.log(response.status);
     setLodingState(false);
-    if (json.success) {
+    if (response.status===200) {
       localStorage.setItem("token",json.authToken);
       navigate("/");
       showAlert(json.success,"You have logged in successfully");
-      console.log(json.success,json.name,json.email);
-    } else {
-      showAlert(json.success,json.error);
+      // console.log(json.success,json.name,json.email);
     }
+    } catch (error) {
+      setLodingState(false);
+      setLoginCred({email:"",password:""});
+      showAlert(false,"Invalid username or password. Please try again.");
+    }
+    
 }
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">

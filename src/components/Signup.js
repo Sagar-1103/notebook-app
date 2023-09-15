@@ -3,7 +3,8 @@ import React,{useState} from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import Loader from './Loader';
 
-export default function Signup() {
+export default function Signup(props) {
+    const {showAlert}=props;
     const navigate = useNavigate();
     const [signCred,setSignCred]=useState({name:"",email:"",password:"",cpassword:""});
     const [lodingState,setLodingState] = useState(false);
@@ -13,7 +14,8 @@ export default function Signup() {
     }
     const handleSubmit=async(e)=>{
     e.preventDefault();
-    setLodingState(true);
+    try {
+      setLodingState(true);
       const url = `${process.env.REACT_APP_LINK}/api/auth/createUser`;
       const headers = {
         "Content-Type":"application/json"
@@ -30,9 +32,14 @@ export default function Signup() {
       if (json.success) {
         localStorage.setItem("token",json.authToken);
         navigate("/");
-      } else {
-
+        showAlert(json.success,"Account created successfully");
       }
+    } catch (error) {
+      setLodingState(false);
+      setSignCred({email:"",password:""});
+      showAlert(false,"Invalid username or password. Please try again.");
+    }
+    
     }
       return (
         <div className="min-h-screen w-full flex items-center justify-center bg-gray-100">
@@ -49,6 +56,7 @@ export default function Signup() {
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="Name"
                   required
+                  minLength={6}
                 />
               </div>
               <div className="mb-4">
@@ -73,6 +81,7 @@ export default function Signup() {
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="New Password"
                   required
+                  minLength={8}
                 />
               </div>
               <div className="mb-4">
@@ -85,6 +94,7 @@ export default function Signup() {
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
                   placeholder="Confirm Password"
                   required
+                  minLength={8}
                 />
               </div>
               { lodingState && <Loader/>}

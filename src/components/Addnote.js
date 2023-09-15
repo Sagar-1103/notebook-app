@@ -18,7 +18,7 @@ export default function Addnote() {
   };
 
   return (
-    <div className=" mx-2 p-10 bg-white rounded-lg border-solid border-2 border-grey shadow-lg">
+    <div className=" mx-2 mt-20 p-10 bg-white rounded-lg border-solid border-2 border-grey shadow-lg">
       <div className='container mx-auto'>
       <h1 className="text-2xl font-semibold mb-4" style={{fontSize:"30px"}}>Add a Note</h1>
       <form onSubmit={handleSubmit}>
@@ -35,6 +35,7 @@ export default function Addnote() {
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
             placeholder="Enter the note title"
             required
+            minLength={5}
           />
         </div>
         <div className="mb-4">
@@ -49,6 +50,7 @@ export default function Addnote() {
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
             placeholder="Enter the note description"
             required
+            minLength={5}
           />
         </div>
         <div className="mb-4">

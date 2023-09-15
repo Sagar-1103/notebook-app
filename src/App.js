@@ -25,7 +25,7 @@ function App() {
     <div>
       <Routes>
         <Route path='/'element={<Home/>} />
-        <Route exact path='/login'element={<Login showAlert={showAlert} />} />
+        <Route exact path='/login'element={<Login showAlert={showAlert}/>} />
         <Route exact path='/signup'element={<Signup showAlert={showAlert} />} />
         <Route exact path='/about'element={<About  />} />
         <Route exact path='/profile'element={<Profile/>} />

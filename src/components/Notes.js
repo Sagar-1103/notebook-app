@@ -54,6 +54,7 @@ export default function Notes(props) {
       </div>
 
       {/* ?????? */}
+      <form onSubmit={handleSave}>
       <div className={`fixed top-0 z-50 left-0 w-full h-full flex items-center justify-center ${modalClick ? '' : 'hidden'}`}>
       <div className="modal-container  relative">
         <div className="modal-content xl:w-96 lg:w-96 md:w-96 sm:w-80 w-64 border-gray border-solid border-2 bg-white p-6 rounded-lg shadow-lg">
@@ -71,6 +72,8 @@ export default function Notes(props) {
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
               // placeholder="Enter the note title"
               required
+              minLength={5}
+
             />
           </div>
           <div className="mb-4">
@@ -85,6 +88,7 @@ export default function Notes(props) {
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-black"
               // placeholder="Enter the note description"
               required
+              minLength={5}
             />
           </div>
           <div className="mb-4">
@@ -103,8 +107,8 @@ export default function Notes(props) {
           </div>
           <div className="flex justify-end">
             <button
-              type="button"
-              onClick={handleSave}
+              type="submit"
+              // onClick={handleSave}
               className=" bg-gray-800 text-white font-semibold py-2 rounded-lg hover:ring focus:outline-none px-4 mr-2"
             >
               Save
@@ -114,6 +118,7 @@ export default function Notes(props) {
         </div>
       </div>
     </div>
+    </form>
       {/* ?????? */}
     </div>
   )

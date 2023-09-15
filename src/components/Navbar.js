@@ -44,7 +44,7 @@ export default function Navbar() {
             About us
           </Link>
           <Link to="/login" className={`${location.pathname==="/login"|| location.pathname==="/signup"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
-            Sign up
+            Log in
           </Link>
           <Link to="/profile" className={`${location.pathname==="/profile"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             Profile
