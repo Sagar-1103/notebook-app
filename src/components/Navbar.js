@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   let location = useLocation();
-  // console.log(location.pathname);
+  let  loggedIn = localStorage.getItem("token");
+  // console.log(loggedIn?"Hello":"world");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -40,15 +41,15 @@ export default function Navbar() {
           <Link to="/" className={`${location.pathname==="/"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             Home
           </Link>
-          <Link to="/about" className={`${location.pathname==="/about"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
+          {/* <Link to="/about" className={`${location.pathname==="/about"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             About us
-          </Link>
-          <Link to="/login" className={`${location.pathname==="/login"|| location.pathname==="/signup"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
+          </Link> */}
+          {!loggedIn && <Link to="/login" className={`${location.pathname==="/login"|| location.pathname==="/signup"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             Log in
-          </Link>
-          <Link to="/profile" className={`${location.pathname==="/profile"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
+          </Link>}
+          {loggedIn && <Link to="/profile" className={`${location.pathname==="/profile"?"text-black font-bold bg-gray-100 transition duration-300 ease-out transform scale-105":"text-white"} rounded-2xl px-3 py-1`}>
             Profile
-          </Link>
+          </Link>}
         
         </div>
         {/* Toggle button at top-right for mobile view */}
@@ -77,9 +78,9 @@ export default function Navbar() {
             <Link to="/" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
               Home
             </Link>
-            <Link to="/about" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
+            {/* <Link to="/about" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
               About us
-            </Link>
+            </Link> */}
             <Link to="/login" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
               Sign up
             </Link>
