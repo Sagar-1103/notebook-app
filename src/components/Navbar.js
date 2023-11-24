@@ -75,18 +75,20 @@ export default function Navbar() {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="bg-gray-800 mt-2">
-            <Link to="/" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
+            <Link to="/" className={`block py-2 px-4  rounded-2xl ${location.pathname==="/"?"text-black bg-slate-50":"text-white"} `} onClick={toggleMobileMenu}>
               Home
             </Link>
             {/* <Link to="/about" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
               About us
             </Link> */}
-            <Link to="/login" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
-              Sign up
-            </Link>
-            <Link to="/profile" className="block py-2 px-4 text-white" onClick={toggleMobileMenu}>
+            {!loggedIn && <Link to="/login" className={`block py-2 px-4  rounded-2xl ${location.pathname==="/login"|| location.pathname==="/signup"?"text-black bg-slate-50":"text-white"} `} onClick={toggleMobileMenu}>
+              Log in
+            </Link>}
+            
+            {loggedIn && <Link to="/profile" className={`block py-2 px-4  rounded-2xl ${location.pathname==="/profile"?"text-black bg-slate-50":"text-white"} `} onClick={toggleMobileMenu}>
               Profile
-            </Link>
+            </Link>}
+            
           </div>
         )}
       </div>

@@ -14,32 +14,40 @@ export default function Signup(props) {
     }
     const handleSubmit=async(e)=>{
     e.preventDefault();
-    try {
-      setLodingState(true);
-      const url = `${process.env.REACT_APP_LINK}/api/auth/createUser`;
-      const headers = {
-        "Content-Type":"application/json"
-      }
-      const requestBody={
-        name:signCred.name,
-        email:signCred.email,
-        password:signCred.password
-      }
-      const response = await axios.post(url,requestBody,{headers});
-      const json = await response.data;
-      setLodingState(false);
-
-      if (json.success) {
-        localStorage.setItem("token",json.authToken);
-        navigate("/");
-        showAlert(json.success,"Account created successfully");
-      }
-    } catch (error) {
-      setLodingState(false);
-      setSignCred({email:"",password:""});
-      showAlert(false,"Invalid username or password. Please try again.");
+    if (signCred.password!==signCred.cpassword) {
+      setSignCred({
+        password:"",
+        cpassword:""
+      });
+      showAlert(false,"Password doesnt match!");
     }
-    
+    else {
+      try {
+        setLodingState(true);
+        const url = `${process.env.REACT_APP_LINK}/api/auth/createUser`;
+        const headers = {
+          "Content-Type":"application/json"
+        }
+        const requestBody={
+          name:signCred.name,
+          email:signCred.email,
+          password:signCred.password
+        }
+        const response = await axios.post(url,requestBody,{headers});
+        const json = await response.data;
+        setLodingState(false);
+  
+        if (json.success) {
+          localStorage.setItem("token",json.authToken);
+          navigate("/");
+          showAlert(json.success,"Account created successfully");
+        }
+      } catch (error) {
+        setLodingState(false);
+        setSignCred({email:"",password:""});
+        showAlert(false,"Invalid username or password. Please try again.");
+      }
+    }
     }
       return (
         <div className="min-h-screen w-full flex items-center justify-center bg-gray-100">
